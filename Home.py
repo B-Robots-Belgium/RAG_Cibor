@@ -31,9 +31,9 @@ if 'small_model' not in st.session_state:
 if 'document_store' not in st.session_state:
     document_store = MongoDBAtlasDocumentStore(
         mongo_connection_string=secret,
-        database_name="vitoData",
-        collection_name="vitoMiniLM",
-        vector_search_index="vito_index",
+        database_name="CiborData",
+        collection_name="CiborRag",
+        vector_search_index="cibor_index",
     )
     st.session_state['document_store'] = document_store
     

@@ -23,15 +23,15 @@ if query:
     tracking_classifications = []
     for index in range(len(results["retriever_search"]["documents"])):
         results_cleaned.append({
-            f'{results["retriever_search"]["documents"][index].meta["article_id"]}': f'{results["retriever_search"]["documents"][index].meta["article_id"]}',
-            'Linked Classifications': f'{results["retriever_search"]["documents"][index].meta["sources"][0]}',
+            'Name': f'{results["retriever_search"]["documents"][index].meta["Name"]}',
+            'Linked Classifications': f'{results["retriever_search"]["documents"][index].meta["Type"]}',
             'Document': f'{results["retriever_search"]["documents"][index].content}',
             'Confidence': f'{results["retriever_search"]["documents"][index].score}'
         })
-        tracking_classifications.append(results["retriever_search"]["documents"][index].meta["sources"][0])
+        tracking_classifications.append(results["retriever_search"]["documents"][index].meta["Type"])
 
     st.write(results_cleaned)
-    flattened_list = [item for sublist in tracking_classifications for item in sublist]
+    flattened_list = tracking_classifications
     counters = Counter(flattened_list)
     max_count = max(counters.values())
     max_occurrence_items = {item for item, count in counters.items() if count == max_count}
